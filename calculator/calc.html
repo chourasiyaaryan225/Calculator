@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+    <style>
+        body{
+            background-image: url("Screenshot_2024-01-08-21-17-32-33_40deb401b9ffe8e1df2f1cc5ba480b12.jpg");
+            background-size:cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+        }
+        #cont{
+            height: 420px;
+            width: 310px;
+            padding: 50px;
+            background-color:rgba(76, 76, 174, 0);
+            border: 1px solid blue;
+            border-radius: 24px;
+            backdrop-filter: blur(50px);
+            animation:ani 5s linear infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes ani {
+            0%{
+                box-shadow: 10px 10px 100px blue;
+            }
+            100%{
+                box-shadow: 10px 10px 30px blue;
+            }
+        }
+        #display{
+            height:50px;
+            width: 300px;
+            background-color: transparent;
+            border: 7px solid white ;
+            border-style: inset;
+            overflow:auto;
+            overflow-wrap: break-word;
+            padding: 30px 0px;
+            text-align:right;
+            font-size: 35px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: aliceblue;
+            letter-spacing: 4px;
+        }
+        #btn-cont{
+            height: 305px;
+            width: 305px;
+            margin: 20px 10px;
+            background-color: transparent;
+        }
+        button{
+            height: 50px;
+            width: 50px;
+            font-size: 23px;
+            border-radius: 10px;
+            outline: none;
+            margin: 7px 10px;
+            font-family: Sitka Text;
+            background-color: rgba(87, 87, 197, 0.544);
+            border: 3px solid blue;
+            border-style: inset;
+            color:aliceblue;
+            text-align: center;
+            transition: all 0.1s ease-in-out;
+        }
+        #btn-cont #btn:hover{
+            cursor: pointer;
+            opacity: 0.6px;
+            border: 1px solid blue;
+            backdrop-filter: blur(100px);
+            background-color: rgba(88, 87, 87, 0.447);
+        }
+        #op{
+            color: aliceblue;
+            background-color: blue;
+            border: 1px solid blue;
+        }
+        #op:hover{
+            background: none;
+            background:linear-gradient(195deg,darkblue,darkblue,blue);
+            cursor: pointer;
+        }
+        .clear{
+            width: 123px;
+        }
+    </style>
+<body>
+    <div id="cont">
+        <div id="display">
+            0
+        </div>
+        <div id="btn-cont">
+            <button id="op" class="clear"  onclick="return clear_disp()" >Clear</button>
+            <button id="op" class="val_00" onclick="return fun_00()">00</button>
+            <button id="op" onclick="return dlt()">dlt</button><br>
+            <button id="btn" class="val_1" onclick="return fun_1()" value="1">1</button>
+            <button id="btn" class="val_2"  onclick="return fun_2()"  value="2">2</button>
+            <button id="btn" class="val_3"  onclick="return fun_3()"  value="3">3</button>
+            <button id="op" class="op_add"  onclick="return op_add()"  value="+">+</button><br>
+            <button id="btn" class="val_4"  onclick="return fun_4()"  value="4">4</button>
+            <button id="btn" class="val_5"  onclick="return fun_5()"  value="5">5</button>
+            <button id="btn" class="val_6"  onclick="return fun_6()"  value="6">6</button>
+            <button id="op" class="op_sub"  onclick="return op_sub()"  value="-">-</button><br>
+            <button id="btn" class="val_7"  onclick="return fun_7()"  value="7">7</button>
+            <button id="btn" class="val_8"  onclick="return fun_8()"  value="8">8</button>
+            <button id="btn" class="val_9"  onclick="return fun_9()"  value="9">9</button>
+            <button id="op" class="op_multi"  onclick="return op_multi()"  value="*">*</button><br>
+            <button id="op" class="val_dot" onclick="return fun_dot()">.</button>
+            <button id="btn" class="val_0"  onclick="return fun_0()"  value="0">0</button>
+            <button id="op" class="result"  onclick="return result()" value="=">=</button>
+            <button id="op" class="op_div"  onclick="return op_div()"  value="/">/</button>
+        </div>
+    </div>
+    <script>
+
+
+// Function to access values
+        function fun_1(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_1');
+            var real_val = val.textContent;
+            display(real_val)
+        }
+        function fun_2(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_2');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_3(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_3');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_4(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_4');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_5(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_5');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_6(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText == "=Invalid Operation"){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_6');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_7(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_7');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_8(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_8');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_9(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_9');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function fun_0(){
+            var clear = document.getElementById('display');
+            console.log(clear.innerText);
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_0');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+
+        function fun_00(){
+            var clear = document.getElementById('display');
+            console.log(clear.innerText);
+            if(clear.innerText === '0' || clear.innerText === "=Invalid Operation"){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_00');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+
+        function fun_dot(){
+            var clear = document.getElementById('display');
+            console.log(clear.textContent);
+            if((clear.innerText === '0') || (clear.innerText == "=Invlaid Operation")){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.val_dot');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+
+// Function to access operator
+        function op_add(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.op_add');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function op_sub(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.op_sub');
+            var real_val = val.textContent;
+            display(real_val);
+        }
+        function op_multi(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.op_multi');
+            var real_val = val.textContent;
+                display(real_val);
+        }
+        function op_div(){
+            var clear = document.getElementById('display');
+            if(clear.innerText === '0' || clear.innerText === '=Invalid Operation'){
+                clear.style.color = 'aliceblue';
+                clear.style.fontSize = '35px';
+                clear.style.borderColor = 'aliceblue';
+                clear.innerText = ' ';
+            }
+            var val = document.querySelector('.op_div');
+            var real_val = val.textContent;
+                display(real_val);
+        }
+    
+// Function to display values and operator
+        function display(dis_val){
+            var disp = document.getElementById('display');
+            var disp_val = dis_val;
+            var txt = document.createTextNode(disp_val);
+                disp.appendChild(txt);
+        }
+// Function to calculate result
+        function result(){
+            var sig = document.querySelector('.result');
+            var disp = document.getElementById('display');
+            var value = disp.textContent;
+            try {
+                var result = eval(value);
+            }
+            catch(syntaxError){
+                disp.innerText = ' ';
+                result = "Invalid Operation";
+                disp.style.color = 'red';
+                disp.style.fontSize = '27px';
+                disp.style.borderColor = 'red';
+            }
+            var sign = sig.textContent;
+            display(sign);
+            display(result);
+        }
+
+// Function to clear the values
+        function clear_disp(){
+            var check = document.getElementById('display');
+                check.style.color = 'aliceblue';
+                check.style.fontSize = '35px';
+                check.style.borderColor = 'aliceblue';
+                check.innerText = ' ';
+            display('0');
+        }
+// Function to delete the one value
+        function dlt(){
+           var disp = document.getElementById('display');
+           var cnt = disp.innerText;
+           var arr = [];
+           for(i = 0 ; i<cnt.length ; i++){
+                var temp = cnt.charAt(i);
+                arr.push(temp);
+           }
+           arr.pop();
+           var disp_val = arr.join("");
+           disp.innerHTML = "";
+           if(disp_val == ""){
+            display("0");
+           }
+           else{
+           display(disp_val);
+           }
+        }
+    </script>
+</body>
+</html>
